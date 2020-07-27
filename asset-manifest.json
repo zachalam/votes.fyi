@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/votes.fyi/static/css/main.0ebb0049.chunk.css",
+    "main.js": "/votes.fyi/static/js/main.8efb1edf.chunk.js",
+    "main.js.map": "/votes.fyi/static/js/main.8efb1edf.chunk.js.map",
+    "runtime-main.js": "/votes.fyi/static/js/runtime-main.98c5fcac.js",
+    "runtime-main.js.map": "/votes.fyi/static/js/runtime-main.98c5fcac.js.map",
+    "static/js/2.69173063.chunk.js": "/votes.fyi/static/js/2.69173063.chunk.js",
+    "static/js/2.69173063.chunk.js.map": "/votes.fyi/static/js/2.69173063.chunk.js.map",
+    "index.html": "/votes.fyi/index.html",
+    "precache-manifest.83403792f925d945f4d205edfd145fdf.js": "/votes.fyi/precache-manifest.83403792f925d945f4d205edfd145fdf.js",
+    "service-worker.js": "/votes.fyi/service-worker.js",
+    "static/css/main.0ebb0049.chunk.css.map": "/votes.fyi/static/css/main.0ebb0049.chunk.css.map",
+    "static/js/2.69173063.chunk.js.LICENSE.txt": "/votes.fyi/static/js/2.69173063.chunk.js.LICENSE.txt",
+    "static/media/animat-customize-color.gif": "/votes.fyi/static/media/animat-customize-color.63b5b474.gif",
+    "static/media/default-monochrome.svg": "/votes.fyi/static/media/default-monochrome.bc3f4aa7.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.98c5fcac.js",
+    "static/js/2.69173063.chunk.js",
+    "static/css/main.0ebb0049.chunk.css",
+    "static/js/main.8efb1edf.chunk.js"
+  ]
+}
