@@ -1,13 +1,14 @@
 import React from "react";
-import loaderImg from "../assets/customize/animat-customize-color.gif";
+import Logo from "../assets/logo/votes.fyi.png";
 
 class Loader extends React.Component {
   render() {
 
     let toRender = (
       <>
+        <img src={Logo} style={{width:'50%'}} />
         Crunching your Aragon DAO numbers...
-        <img src={loaderImg} />
+
       </>
     );
 

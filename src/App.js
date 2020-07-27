@@ -3,7 +3,6 @@ import { ThemeProvider } from "@chakra-ui/core";
 import theme from "./theme";
 import aragonVote from "./services/aragon";
 import Loader from "./components/Loader";
-import Logo from "./assets/logo/vector/default-monochrome.svg";
 
 class App extends React.Component {
   constructor(props) {
@@ -52,8 +51,6 @@ class App extends React.Component {
     }
 
     return <ThemeProvider theme={theme}>
-      <img src={Logo} style={{width:'50px'}}/>
-      <br />
       {toRender}
       </ThemeProvider>;
   }
