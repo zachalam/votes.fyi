@@ -6,6 +6,9 @@ import { Form, Button, Input } from "semantic-ui-react";
 class Login extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      orgName: "",
+    };
   }
 
   render() {
@@ -22,7 +25,7 @@ class Login extends React.Component {
         </Animated>
 
         <div
-          class="xlarge"
+          className="xlarge"
           style={{ paddingTop: "20px", paddingBottom: "20px" }}
         >
           DAO Leaders
@@ -36,15 +39,30 @@ class Login extends React.Component {
           <b>most active voters</b>.
         </div>
 
-        <Form onSubmit={this.props.submitForm}>
-          <Input size="huge" placeholder="governance.aragonproject.eth" />
-          {" "}
+        <Form onSubmit={() => this.props.setOrgName(this.state.orgName)}>
+          <Input
+            size="huge"
+            value={this.state.orgName}
+            placeholder="governance.aragonproject.eth"
+            onChange={(e) => {
+              this.setState({ orgName: e.target.value });
+            }}
+          />{" "}
           <Button primary type="submit" size="huge">
             Go
           </Button>
         </Form>
         <div>
-          Unsure? Try <a href="/#governance.aragonproject.eth">governance.aragonproject.eth</a>
+          Unsure? Try{" "}
+          <a
+            href="#"
+            onClick={() => {
+              window.location.hash = "governance.aragonproject.eth";
+              window.location.reload();
+            }}
+          >
+            governance.aragonproject.eth
+          </a>
         </div>
       </>
     );

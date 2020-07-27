@@ -24,13 +24,25 @@ class App extends React.Component {
     }
   }
 
+  componentWillReceiveProps(newProps) {
+    console.log("new props are..");
+    console.log(newProps);
+  }
+
   setOrgName = (orgName) => {
     this.setState({orgName});
+    this.runVoteLookup(orgName);
   }
 
   runVoteLookup = async (orgName) => {
-    const votingDetails = await aragonVote(orgName);
-    this.setState({ votingDetails });
+    try {
+      const votingDetails = await aragonVote(orgName);
+      this.setState({ votingDetails });
+      window.location=`/#${orgName}`
+    } catch(e) {
+      this.setState({ orgName: ""})
+      alert("Please enter a valid Aragon DAO name.")
+    }
   }
 
   Leaderboard = (casts) => {
@@ -48,7 +60,7 @@ class App extends React.Component {
     const { votingDetails, orgName } = this.state;
     const { allCasts, allVotes } = votingDetails;
 
-    let toRender = <Login orgName={orgName} />;
+    let toRender = <Login orgName={orgName} setOrgName={this.setOrgName} />;
 
     if (orgName) {
       // orgName provided but not sure about data yet

@@ -16,7 +16,12 @@ class Loader extends React.Component {
 
   }
 
+
+
   render() {
+
+    const { orgName } = this.props;
+    const shortenedName = orgName.length > 28 ? orgName.substring(0,28) + "..." : orgName;
     let toRender = (
       <>
         <Animated
@@ -29,8 +34,8 @@ class Loader extends React.Component {
           </>
         </Animated>
 
-        <div class="xlarge" style={{paddingTop:'20px',paddingBottom:'20px'}}>Crunching votes...</div>
-        <div class="medium" style={{color:'grey'}}><b>{this.props.orgName}</b></div>
+        <div class="xlarge" style={{paddingTop:'20px',paddingBottom:'20px'}}>Crunching votes</div>
+        <div class="medium" style={{color:'grey'}}><b>{shortenedName}</b></div>
       </>
     );
 
