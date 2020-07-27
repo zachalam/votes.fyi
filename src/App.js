@@ -1,7 +1,10 @@
 import React from "react";
-import theme from "./theme";
+import { Grid} from 'semantic-ui-react'
+
 import aragonVote from "./services/aragon";
 import Loader from "./components/Loader";
+import Login from "./components/Login";
+import Rankings from "./components/Rankings";
 
 class App extends React.Component {
   constructor(props) {
@@ -44,15 +47,20 @@ class App extends React.Component {
       toRender = (
         <div className="App">
           <header className="App-header">
-            hellolllllllsaf
-            {this.Leaderboard(allCasts)}
+            <Rankings allCasts={allCasts} />
           </header>
         </div>
       );
     }
 
+    // wrap in template
     return <>
+      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+      <Grid.Column style={{ maxWidth: 500, paddingTop:'1em' }}>
       {toRender}
+      </Grid.Column>
+      </Grid>
+
       </>;
   }
 }

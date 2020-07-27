@@ -48,13 +48,23 @@ async function aragonVote(theOrganization) {
         voteId: "appAddress:0x277bfcf7c2e162cb1ac3e9ae228a3132a75f83d4-voteId:0x18"
         voter: "0xb8506be2c700641873108a1a47d8e509157cf23
         */
+       let voteRecord = {}
        if(allCasts[cast.voter]) {
            // already keeping track of this voter
-           allCasts[cast.voter].push(cast.supports);
+           let voter = allCasts[cast.voter];
+           voteRecord = {
+            supportVotes: (cast.supports ? 1 : 0) + voter.supportVotes, 
+            totalVotes: 1 + voter.totalVotes
+            }
        } else {
            // first time seeing this voter.
-           allCasts[cast.voter] = [cast.supports];
+           voteRecord = {
+               supportVotes: cast.supports ? 1 : 0, 
+               totalVotes: 1
+           }
        }
+
+       allCasts[cast.voter] = voteRecord;
     }
   }
   
