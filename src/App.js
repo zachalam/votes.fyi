@@ -1,18 +1,24 @@
 import React from "react";
+import { ThemeProvider } from "@chakra-ui/core";
+import theme from "./theme";
 import aragonVote from "./services/aragon";
+import Loader from "./components/Loader";
+import Logo from "./assets/logo/vector/default-monochrome.svg";
 
 class App extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      votingDetails: {}
-    }
+      votingDetails: {},
+    };
   }
-
   async componentDidMount() {
+    console.log(window.location);
+    setTimeout(() => {
+      window.location = "/#looo";
+    }, 3000);
     const votingDetails = await aragonVote("governance.aragonproject.eth");
-    this.setState({votingDetails});
+    this.setState({ votingDetails });
   }
 
   Leaderboard = (casts) => {
@@ -26,30 +32,30 @@ class App extends React.Component {
     return leaderboard;
   };
 
-
   render() {
-    const {votingDetails} = this.state;
+    const { votingDetails } = this.state;
     const { allCasts } = votingDetails;
 
-    if(!allCasts) {
-      console.log("wooooooasgasggagagasgasg")
-      // loading...
-      return (
+    let toRender = (
+      <Loader />
+    );
+
+    if (allCasts) {
+      toRender = (
         <div className="App">
           <header className="App-header">
-            loading...
+            hellolllllllsaf
+            {this.Leaderboard(allCasts)}
           </header>
         </div>
       );
     }
-    return (
-      <div className="App">
-        <header className="App-header">
-          hellolllllllsaf
-          {this.Leaderboard(allCasts)}
-        </header>
-      </div>
-    );
+
+    return <ThemeProvider theme={theme}>
+      <img src={Logo} style={{width:'50px'}}/>
+      <br />
+      {toRender}
+      </ThemeProvider>;
   }
 }
 
