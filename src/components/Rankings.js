@@ -136,7 +136,7 @@ class Rankings extends React.Component {
         />
         <br />
         {this.state.voterCount > 1 ? (
-          <>
+          <div style={{padding:'0.25em', borderRadius:'1em', backgroundColor:'rgba(0,0,0,0.1)'}}>
             <Button icon labelPosition="left" size={'huge'} onClick={this.lastVoter}>
               <Icon name="left arrow" />
               Last
@@ -145,7 +145,7 @@ class Rankings extends React.Component {
               Next
               <Icon name="right arrow" />
             </Button>
-          </>
+          </div>
         ) : <b>This organization only has 1 voter.</b>}
 
 
