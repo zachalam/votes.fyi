@@ -1,6 +1,6 @@
 {
   "name": "votes.fyi",
-  "homepage": "http://zachalam.github.io/votes.fyi",
+  "homepage": "https://votes.fyi",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
