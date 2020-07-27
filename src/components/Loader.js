@@ -29,8 +29,8 @@ class Loader extends React.Component {
           </>
         </Animated>
 
-        <h1>Crunching DAO votes...</h1>
-        <h3><b>{this.props.orgName}</b></h3>
+        <div class="xlarge" style={{paddingTop:'20px',paddingBottom:'20px'}}>Crunching votes...</div>
+        <div class="medium" style={{color:'grey'}}><b>{this.props.orgName}</b></div>
       </>
     );
 

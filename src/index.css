@@ -1,11 +1,10 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Eczar', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color:#fff;
+  background: rgb(255,255,255);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 63%, rgba(167,167,167,1) 100%);
   text-align:center;
   font-size:1.25em;
 }
@@ -13,4 +12,26 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.medium {
+  font-size:1.6em;
+  margin-top:0.2em;
+  margin-bottom:0.2em;
+}
+
+
+.large {
+  font-size:2.25em;
+  margin-top:0.2em;
+  margin-bottom:0.2em;
+}
+
+.xlarge {
+  font-family: 'Poppins', serif;
+
+  font-size:2.5em;
+  font-weight:bold;
+  margin-top:0.2em;
+  margin-bottom:0em;
 }

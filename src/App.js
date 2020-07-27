@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid} from 'semantic-ui-react'
+import { Grid } from "semantic-ui-react";
 
 import aragonVote from "./services/aragon";
 import Loader from "./components/Loader";
@@ -11,15 +11,25 @@ class App extends React.Component {
     super(props);
     this.state = {
       votingDetails: {},
-      orgName: "governance.aragonproject.eth"
+      orgName: "",
     };
   }
   async componentDidMount() {
-    console.log(window.location);
-    setTimeout(() => {
-      window.location = "/#looo";
-    }, 3000);
-    const votingDetails = await aragonVote(this.state.orgName);
+    const { hash } = window.location;
+    const orgName = hash.split("#")[1];
+    this.setState({orgName})
+    if (orgName) {
+      // org provided in url.
+      this.runVoteLookup(orgName);
+    }
+  }
+
+  setOrgName = (orgName) => {
+    this.setState({orgName});
+  }
+
+  runVoteLookup = async (orgName) => {
+    const votingDetails = await aragonVote(orgName);
     this.setState({ votingDetails });
   }
 
@@ -36,32 +46,40 @@ class App extends React.Component {
 
   render() {
     const { votingDetails, orgName } = this.state;
-    const { allCasts } = votingDetails;
+    const { allCasts, allVotes } = votingDetails;
 
-    let toRender = (
-      <Loader orgName={orgName} />
-    );
+    let toRender = <Login orgName={orgName} />;
 
-    
+    if (orgName) {
+      // orgName provided but not sure about data yet
+      toRender = <Loader orgName={orgName} />;
+    }
+
     if (allCasts) {
+      // orgName and data are both here.. display results
       toRender = (
         <div className="App">
           <header className="App-header">
-            <Rankings allCasts={allCasts} />
+            <Rankings orgName={orgName} allVotes={allVotes} allCasts={allCasts} />
           </header>
         </div>
       );
     }
 
     // wrap in template
-    return <>
-      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-      <Grid.Column style={{ maxWidth: 500, paddingTop:'1em' }}>
-      {toRender}
-      </Grid.Column>
-      </Grid>
-
-      </>;
+    return (
+      <>
+        <Grid
+          textAlign="center"
+          style={{ height: "100vh" }}
+          verticalAlign="middle"
+        >
+          <Grid.Column style={{ maxWidth: 550, padding: "2em" }}>
+            {toRender}
+          </Grid.Column>
+        </Grid>
+      </>
+    );
   }
 }
 

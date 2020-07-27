@@ -55,10 +55,12 @@ async function aragonVote(theOrganization) {
         (element) => element.voter === voterId
       );
 
+      const voterShort = voterId.substring(0, 8) + ".." + voterId.substring(36);
       if (foundVoter > -1) {
         // already keeping track of this voter, updated
         const voterRecord = {
           voter: cast.voter,
+          voterShort,
           supportVotes:
             (cast.supports ? 1 : 0) + allCasts[foundVoter].supportVotes,
           totalVotes: 1 + allCasts[foundVoter].totalVotes,
@@ -68,6 +70,7 @@ async function aragonVote(theOrganization) {
         // first time seeing this voter.
         allCasts.push({
           voter: cast.voter,
+          voterShort,
           supportVotes: cast.supports ? 1 : 0,
           totalVotes: 1,
         });
