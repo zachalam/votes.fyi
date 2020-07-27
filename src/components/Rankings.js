@@ -7,19 +7,24 @@ class Rankings extends React.Component {
   }
 
   render() {
+    let { allCasts } = this.props;
 
     let leaderboard = [];
-    for (const [key, cast] of Object.entries(this.props.allCasts)) {
-        leaderboard.push(            <Table.Row>
-            <Table.Cell>{key.substring(0, 6)}..{key.substring(38)}</Table.Cell>
-            <Table.Cell>{cast.length} votes</Table.Cell>
-          </Table.Row>);
-      }
+    for (const cast of allCasts) {
+      const { voter } = cast;
+      leaderboard.push(
+        <Table.Row>
+          <Table.Cell>
+            {voter.substring(0, 6)}..{voter.substring(38)}
+          </Table.Cell>
+          <Table.Cell>{cast.totalVotes} votes</Table.Cell>
+        </Table.Row>
+      );
+    }
 
-      
     let toRender = (
       <>
-        <Table basic='very' celled collapsing style={{width:'100%'}}>
+        <Table basic="very" celled collapsing style={{ width: "100%" }}>
           <Table.Body>
             <Table.Row>
               <Table.Cell>

@@ -9,7 +9,7 @@ async function aragonVote(theOrganization) {
   const votingApp = await org.app("voting");
 
   // gather useful vote information for this app.
-  let allCasts = {};
+  let allCasts = [];
   let allVotes = {};
 
   // create voting app based on address.
@@ -48,26 +48,37 @@ async function aragonVote(theOrganization) {
         voteId: "appAddress:0x277bfcf7c2e162cb1ac3e9ae228a3132a75f83d4-voteId:0x18"
         voter: "0xb8506be2c700641873108a1a47d8e509157cf23
         */
-       let voteRecord = {}
-       if(allCasts[cast.voter]) {
-           // already keeping track of this voter
-           let voter = allCasts[cast.voter];
-           voteRecord = {
-            supportVotes: (cast.supports ? 1 : 0) + voter.supportVotes, 
-            totalVotes: 1 + voter.totalVotes
-            }
-       } else {
-           // first time seeing this voter.
-           voteRecord = {
-               supportVotes: cast.supports ? 1 : 0, 
-               totalVotes: 1
-           }
-       }
+      const voterId = cast.voter;
 
-       allCasts[cast.voter] = voteRecord;
+      // find existing voter..
+      const foundVoter = allCasts.findIndex(
+        (element) => element.voter === voterId
+      );
+
+      if (foundVoter > -1) {
+        // already keeping track of this voter, updated
+        const voterRecord = {
+          voter: cast.voter,
+          supportVotes:
+            (cast.supports ? 1 : 0) + allCasts[foundVoter].supportVotes,
+          totalVotes: 1 + allCasts[foundVoter].totalVotes,
+        };
+        allCasts[foundVoter] = voterRecord;
+      } else {
+        // first time seeing this voter.
+        allCasts.push({
+          voter: cast.voter,
+          supportVotes: cast.supports ? 1 : 0,
+          totalVotes: 1,
+        });
+      }
     }
   }
-  
+
+  // sort all casts..
+  allCasts.sort((b, a) => {
+    return a.totalVotes - b.totalVotes;
+  });
   const bundle = { allVotes: votes, allCasts };
   console.log("bundle is");
   console.log(bundle);
