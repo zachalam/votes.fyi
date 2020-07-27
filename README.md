@@ -5,7 +5,7 @@
 Fully working project available here: https://votes.fyi/
 
 ## Project Description
-🦋 A delightful voting explorer (that really encourages voter participation) for Aragon DAOs. Provide an Aragon DAO address and we'll generate a leaderboard based on the most active voters.
+🦋 A delightful voting explorer (that encourages voter participation) for Aragon DAOs. Provide an Aragon DAO address and we'll generate a leaderboard based on the most active voters.
 
 ![](https://i.imgur.com/U0hIx4w.png)
 
