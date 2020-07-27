@@ -1,5 +1,4 @@
 import React from "react";
-import { ThemeProvider } from "@chakra-ui/core";
 import theme from "./theme";
 import aragonVote from "./services/aragon";
 import Loader from "./components/Loader";
@@ -9,6 +8,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       votingDetails: {},
+      orgName: "governance.aragonproject.eth"
     };
   }
   async componentDidMount() {
@@ -16,7 +16,7 @@ class App extends React.Component {
     setTimeout(() => {
       window.location = "/#looo";
     }, 3000);
-    const votingDetails = await aragonVote("governance.aragonproject.eth");
+    const votingDetails = await aragonVote(this.state.orgName);
     this.setState({ votingDetails });
   }
 
@@ -32,13 +32,14 @@ class App extends React.Component {
   };
 
   render() {
-    const { votingDetails } = this.state;
+    const { votingDetails, orgName } = this.state;
     const { allCasts } = votingDetails;
 
     let toRender = (
-      <Loader />
+      <Loader orgName={orgName} />
     );
 
+    
     if (allCasts) {
       toRender = (
         <div className="App">
@@ -50,9 +51,9 @@ class App extends React.Component {
       );
     }
 
-    return <ThemeProvider theme={theme}>
+    return <>
       {toRender}
-      </ThemeProvider>;
+      </>;
   }
 }
 
